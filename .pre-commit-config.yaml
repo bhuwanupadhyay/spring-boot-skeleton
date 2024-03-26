@@ -10,3 +10,9 @@ repos:
 #    hooks:
 #      - id: pretty-format-java
 #        args: [--autofix, --aosp, --google-java-formatter-version=1.16.0]
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.1.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        args: []
