@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="2023-03-25-01" author="Bhuwan Prasad Upadhyay">
+        <createTable tableName="entities">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" primaryKeyName="entity_id_pk"/>
+            </column>
+            <column name="properties" type="jsonb" defaultValue="{}"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

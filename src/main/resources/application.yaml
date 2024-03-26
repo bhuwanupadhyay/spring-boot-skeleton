@@ -1,0 +1,13 @@
+# server config
+server:
+  port: 8080
+
+# default values
+spring:
+  liquibase:
+    enabled: false
+
+# service config
+core:
+  log-prefix: "${LOG_PREFIX:es}"
+  cors-allow-origins: "${CORS_ALLOW_ORIGINS:*}"
