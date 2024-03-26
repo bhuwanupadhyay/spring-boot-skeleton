@@ -1,4 +1,4 @@
-# Spring Boot Entities Service
+# Spring Boot Entity Service
 
 This is skeleton project for a Spring Boot service that provides CRUD operations for entities.
 
