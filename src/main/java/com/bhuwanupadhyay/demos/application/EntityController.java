@@ -4,8 +4,12 @@ package com.bhuwanupadhyay.demos.application;
 import com.bhuwanupadhyay.demos.model.*;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,20 +26,20 @@ public class EntityController implements IEntityApi {
     }
 
     @Override
-    public ResponseEntity<Void> create(EntityProperties properties) {
+    public ResponseEntity<Ids> create(EntityProperties properties) {
         log.atDebug().log(STR."Creating new entity information with number of properties: \{properties.size()}");
         EntityId entityId = entityService.create(properties);
         log.atDebug().log(STR."Entity information created with id: \{entityId.id()}");
-        return ResponseEntity.created(URI.create(STR."/entity/\{entityId.id()}")).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(Ids.of(entityId.id()));
     }
 
     @Override
-    public ResponseEntity<Void> patch(String entityId, EntityProperties properties) {
+    public ResponseEntity<Ids> patch(String entityId, EntityProperties properties) {
         log.atDebug().log(STR."Updating exsitng entity \{entityId} information with number of properties: \{properties.size()}");
         EntityId existingEntityId = new EntityId(entityId);
         entityService.update(existingEntityId, properties);
         log.atDebug().log(STR."Entity information updated with id: \{entityId}");
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.OK).body(Ids.of(existingEntityId.id()));
     }
 
     @Override

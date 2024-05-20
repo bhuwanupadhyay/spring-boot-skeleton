@@ -10,18 +10,16 @@ public interface IEntityRepository {
     }
 
     @SuppressWarnings("UnusedReturnValue")
-    Optional<EntityProperties> createAndGet(EntityId entityId, EntityProperties properties);
+    Optional<EntityInfo> createAndGet(EntityId entityId, EntityProperties properties);
 
     @SuppressWarnings("UnusedReturnValue")
-    Optional<EntityProperties> updateAndGet(EntityId entityId, EntityProperties properties);
+    Optional<EntityInfo> updateAndGet(EntityId entityId, EntityProperties properties);
 
     default void update(EntityId entityId, EntityProperties properties) {
         updateAndGet(entityId, properties);
     }
 
     void deleteById(EntityId entityId);
-
-    void delete(Query query);
 
     Optional<EntityInfo> getById(EntityId entityId);
 

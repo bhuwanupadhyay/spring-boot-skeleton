@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import jakarta.validation.Valid;
 
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,7 +36,8 @@ public interface IEntityApi {
             tags = {"${serviceApi.tag}"})
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "201", description = "Created"),
+                @ApiResponse(responseCode = "201", description = "Created",
+                        content = {@Content(schema = @Schema(implementation = Ids.class))}),
                 @ApiResponse(
                         responseCode = "400",
                         description = "Bad Request",
@@ -72,7 +74,7 @@ public interface IEntityApi {
                     + "', '"
                     + ServiceRole.ADMIN
                     + "')")
-    ResponseEntity<Void> create(@RequestBody @Valid EntityProperties properties);
+    ResponseEntity<Ids> create(@RequestBody @Valid EntityProperties properties);
 
     @Operation(
             summary = "${serviceApi.patch.summary}",
@@ -81,7 +83,8 @@ public interface IEntityApi {
             tags = {"${serviceApi.tag}"})
     @ApiResponses(
             value = {
-                @ApiResponse(responseCode = "204", description = "No Content"),
+                @ApiResponse(responseCode = "200", description = "Ok",
+                        content = {@Content(schema = @Schema(implementation = Ids.class))}),
                 @ApiResponse(
                         responseCode = "400",
                         description = "Bad Request",
@@ -118,7 +121,7 @@ public interface IEntityApi {
                     + "', '"
                     + ServiceRole.ADMIN
                     + "')")
-    ResponseEntity<Void> patch(
+    ResponseEntity<Ids> patch(
             @Parameter(description = "Entity Id") @PathVariable("entityId") String entityId,
             @RequestBody @Valid EntityProperties properties);
 

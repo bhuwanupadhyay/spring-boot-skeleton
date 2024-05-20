@@ -1,3 +1,3 @@
 package com.bhuwanupadhyay.demos.model;
 
-public record SearchQuery(String query, int page, int pageSize) {}
+public record SearchQuery(String query, Integer pageNumber, Integer pageSize) {}
